@@ -6,6 +6,7 @@ import tt.holdem.game.combination.PokerCombinationRegistry;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class PokerHand implements Comparable<PokerHand> {
     private static final Pattern handPattern = Pattern.compile("^[2-9TJQKA][SCDH]( [2-9TJQKA][SCDH]){4}$");
@@ -23,7 +24,7 @@ public class PokerHand implements Comparable<PokerHand> {
                 .sorted(Comparator.reverseOrder())
                 .toArray(Card[]::new);
 
-        if (Arrays.stream(cards).distinct().count() != 5) {
+        if (Arrays.stream(cards).distinct().count() != 5L) {
             throw new IllegalArgumentException(cardsString);
         }
     }
@@ -46,6 +47,6 @@ public class PokerHand implements Comparable<PokerHand> {
 
     @Override
     public String toString() {
-        return Arrays.toString(cards);
+        return Arrays.stream(cards).map(Card::toString).collect(Collectors.joining(" ", "\"", "\""));
     }
 }
