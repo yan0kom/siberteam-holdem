@@ -55,4 +55,8 @@ class Straight extends PokerCombination {
     public String toString() {
         return String.format("Straight to %s", rank);
     }
+
+    public CardRank getRank() {
+        return rank;
+    }
 }

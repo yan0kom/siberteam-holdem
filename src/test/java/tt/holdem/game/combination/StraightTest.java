@@ -3,7 +3,8 @@ package tt.holdem.game.combination;
 import org.junit.jupiter.api.Test;
 import tt.holdem.game.PokerHand;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class StraightTest {
 
