@@ -23,5 +23,8 @@ public class PokerHandTest {
         assertThrows(IllegalArgumentException.class, () -> {
             new PokerHand("2D3HTHQS2C");
         });
+        assertThrows(IllegalArgumentException.class, () -> {
+            new PokerHand("2D 3H TH QS 2D");
+        });
     }
 }

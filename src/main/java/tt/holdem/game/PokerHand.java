@@ -17,10 +17,15 @@ public class PokerHand implements Comparable<PokerHand> {
         if (!handPattern.matcher(cardsString).matches()) {
             throw new IllegalArgumentException(cardsString);
         }
+
         cards = Arrays.stream(cardsString.split(" "))
                 .map(rs -> new Card(CardRank.fromSymbol(rs.charAt(0)), CardSuit.fromSymbol(rs.charAt(1))))
                 .sorted(Comparator.reverseOrder())
                 .toArray(Card[]::new);
+
+        if (Arrays.stream(cards).distinct().count() != 5) {
+            throw new IllegalArgumentException(cardsString);
+        }
     }
 
     public PokerCombination getCombination() {

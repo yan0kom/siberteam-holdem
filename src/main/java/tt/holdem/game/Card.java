@@ -1,6 +1,7 @@
 package tt.holdem.game;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 public class Card implements Comparable<Card> {
     private final CardRank rank;
@@ -28,5 +29,18 @@ public class Card implements Comparable<Card> {
     @Override
     public String toString() {
         return "" + getRank() + getSuit();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return rank == card.rank && suit == card.suit;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(rank, suit);
     }
 }
