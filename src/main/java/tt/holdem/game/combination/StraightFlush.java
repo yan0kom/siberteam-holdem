@@ -9,7 +9,7 @@ import java.util.Comparator;
 import java.util.Optional;
 
 class StraightFlush extends PokerCombination {
-    private static final Integer STRAIGHT_FLUSH_VALUE = 9;
+    public static final Integer STRAIGHT_FLUSH_VALUE = 9;
     public static Optional<PokerCombination> create(Card[] cards) {
         assertCards(cards);
         if (Arrays.stream(cards).map(Card::getSuit).distinct().count() != 1L) {
@@ -27,9 +27,6 @@ class StraightFlush extends PokerCombination {
         straightFlush.suit = cards[0].getSuit();
 
         return Optional.of(straightFlush);
-    }
-    static {
-        PokerCombinationRegistry.registerCombinationFactoryMethod(STRAIGHT_FLUSH_VALUE, StraightFlush::create);
     }
 
     private CardRank rank;

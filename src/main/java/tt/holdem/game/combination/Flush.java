@@ -9,7 +9,7 @@ import java.util.Comparator;
 import java.util.Optional;
 
 class Flush extends PokerCombination {
-    private static final Integer FLUSH_VALUE = 6;
+    public static final Integer FLUSH_VALUE = 6;
     public static Optional<PokerCombination> create(Card[] cards) {
         assertCards(cards);
         if (Arrays.stream(cards).map(Card::getSuit).distinct().count() != 1L) {
@@ -27,9 +27,6 @@ class Flush extends PokerCombination {
         }
 
         return Optional.of(flush);
-    }
-    static {
-        PokerCombinationRegistry.registerCombinationFactoryMethod(FLUSH_VALUE, Flush::create);
     }
 
     private CardSuit suit;

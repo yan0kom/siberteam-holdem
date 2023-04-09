@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 class RoyalFlush extends PokerCombination {
-    private static final Integer ROYAL_FLUSH_VALUE = 10;
+    public static final Integer ROYAL_FLUSH_VALUE = 10;
     public static Optional<PokerCombination> create(Card[] cards) {
         assertCards(cards);
         if (Arrays.stream(cards).map(Card::getSuit).distinct().count() != 1L) {
@@ -29,9 +29,6 @@ class RoyalFlush extends PokerCombination {
         royalFlush.suit = straightFlush.getSuit();
 
         return Optional.of(royalFlush);
-    }
-    static {
-        PokerCombinationRegistry.registerCombinationFactoryMethod(ROYAL_FLUSH_VALUE, RoyalFlush::create);
     }
 
     private CardSuit suit;

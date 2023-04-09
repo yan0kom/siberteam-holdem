@@ -25,9 +25,17 @@ public class PokerCombinationRegistry {
     }
 
     private static final List<RegistryEntry> factoryMethods = new ArrayList<>();
-
-    public static void registerCombinationFactoryMethod(Integer value, CombinationFactoryMethod method) {
-        factoryMethods.add(new RegistryEntry(value, method));
+    static {
+        factoryMethods.add(new RegistryEntry(RoyalFlush.ROYAL_FLUSH_VALUE, RoyalFlush::create));
+        factoryMethods.add(new RegistryEntry(StraightFlush.STRAIGHT_FLUSH_VALUE, StraightFlush::create));
+        factoryMethods.add(new RegistryEntry(Quads.QUADS_VALUE, Quads::create));
+        factoryMethods.add(new RegistryEntry(FullHouse.FULL_HOUSE_VALUE, FullHouse::create));
+        factoryMethods.add(new RegistryEntry(Flush.FLUSH_VALUE, Flush::create));
+        factoryMethods.add(new RegistryEntry(Straight.STRAIGHT_VALUE, Straight::create));
+        factoryMethods.add(new RegistryEntry(Triple.TRIPLE_VALUE, Triple::create));
+        factoryMethods.add(new RegistryEntry(TwoPairs.TWO_PAIRS_VALUE, TwoPairs::create));
+        factoryMethods.add(new RegistryEntry(Pair.PAIR_VALUE, Pair::create));
+        factoryMethods.add(new RegistryEntry(HighCard.HIGH_CARD_VALUE, HighCard::create));
         factoryMethods.sort(
                 Comparator.<RegistryEntry, Integer> comparing(entry -> entry.combinationValue).reversed());
     }

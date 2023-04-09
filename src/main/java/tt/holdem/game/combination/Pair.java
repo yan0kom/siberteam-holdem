@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 class Pair extends PokerCombination {
-    private static final Integer PAIR_VALUE = 2;
+    public static final Integer PAIR_VALUE = 2;
     public static Optional<PokerCombination> create(Card[] cards) {
         assertCards(cards);
         if (Arrays.stream(cards).map(Card::getRank).distinct().count() != 4L) {
@@ -34,9 +34,6 @@ class Pair extends PokerCombination {
         }
 
         return Optional.of(pair);
-    }
-    static {
-        PokerCombinationRegistry.registerCombinationFactoryMethod(PAIR_VALUE, Pair::create);
     }
 
     private CardRank pairRank;

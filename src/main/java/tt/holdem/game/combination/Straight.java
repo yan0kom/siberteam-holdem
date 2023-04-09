@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.Optional;
 
 class Straight extends PokerCombination {
-    private static final Integer STRAIGHT_VALUE = 5;
+    public static final Integer STRAIGHT_VALUE = 5;
     public static Optional<PokerCombination> create(Card[] cards) {
         assertCards(cards);
         if (Arrays.stream(cards).map(Card::getRank).distinct().count() != 5L) {
@@ -31,9 +31,6 @@ class Straight extends PokerCombination {
         straight.rank = cardRanks[0];
 
         return Optional.of(straight);
-    }
-    static {
-        PokerCombinationRegistry.registerCombinationFactoryMethod(STRAIGHT_VALUE, Straight::create);
     }
 
     private CardRank rank;

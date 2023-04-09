@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 class FullHouse extends PokerCombination {
-    private static final Integer FULL_HOUSE_VALUE = 7;
+    public static final Integer FULL_HOUSE_VALUE = 7;
     public static Optional<PokerCombination> create(Card[] cards) {
         assertCards(cards);
         if (Arrays.stream(cards).map(Card::getRank).distinct().count() != 2L) {
@@ -34,9 +34,6 @@ class FullHouse extends PokerCombination {
                 .findFirst().orElseThrow(() -> new UnknownError(Arrays.toString(cards)));
 
         return Optional.of(fullHouse);
-    }
-    static {
-        PokerCombinationRegistry.registerCombinationFactoryMethod(FULL_HOUSE_VALUE, FullHouse::create);
     }
 
     private CardRank tripleRank;

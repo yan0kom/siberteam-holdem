@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 class Triple extends PokerCombination {
-    private static final Integer TRIPLE_VALUE = 4;
+    public static final Integer TRIPLE_VALUE = 4;
     public static Optional<PokerCombination> create(Card[] cards) {
         assertCards(cards);
         if (Arrays.stream(cards).map(Card::getRank).distinct().count() != 3L) {
@@ -40,9 +40,6 @@ class Triple extends PokerCombination {
         }
 
         return Optional.of(triple);
-    }
-    static {
-        PokerCombinationRegistry.registerCombinationFactoryMethod(TRIPLE_VALUE, Triple::create);
     }
 
     private CardRank tripleRank;

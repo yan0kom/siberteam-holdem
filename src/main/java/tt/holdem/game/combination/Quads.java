@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 class Quads extends PokerCombination {
-    private static final Integer QUADS_VALUE = 8;
+    public static final Integer QUADS_VALUE = 8;
     public static Optional<PokerCombination> create(Card[] cards) {
         assertCards(cards);
         if (Arrays.stream(cards).map(Card::getRank).distinct().count() != 2L) {
@@ -40,9 +40,6 @@ class Quads extends PokerCombination {
         quads.kickerRank = kickersRank[0];
 
         return Optional.of(quads);
-    }
-    static {
-        PokerCombinationRegistry.registerCombinationFactoryMethod(QUADS_VALUE, Quads::create);
     }
 
     private CardRank quadsRank;
