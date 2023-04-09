@@ -24,9 +24,9 @@ class QuadsTest {
         var _As9h9d9c9s = Quads.create(new PokerHand("AS 9C 9S 9D 9H").getCards()).get();
         var _2s9h9d9c9s = Quads.create(new PokerHand("2S 9C 9S 9D 9H").getCards()).get();
 
-        assertTrue(_AdThTdTcTs.compareTo(_AsThTdTc5s) == 0); // all cards have same rank
-        assertTrue(_AsThTdTc5s.compareTo(_As9h9d9c9s) > 0); // quads rank different
-        assertTrue(_2s9h9d9c9s.compareTo(_As9h9d9c9s) < 0); // kicker different
+        assertTrue(_AdThTdTcTs.compareToSameTypeCombination(_AsThTdTc5s) == 0); // all cards have same rank
+        assertTrue(_AsThTdTc5s.compareToSameTypeCombination(_As9h9d9c9s) > 0); // quads rank different
+        assertTrue(_2s9h9d9c9s.compareToSameTypeCombination(_As9h9d9c9s) < 0); // kicker different
     }
 
     @Test

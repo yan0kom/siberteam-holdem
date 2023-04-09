@@ -22,7 +22,7 @@ class RoyalFlushTest {
         var _AdKdQdJdTd = RoyalFlush.create(new PokerHand("KD AD TD JD QD").getCards()).get();
         var _AsKsQsJsTs = RoyalFlush.create(new PokerHand("KS AS TS JS QS").getCards()).get();
 
-        assertTrue(_AdKdQdJdTd.compareTo(_AsKsQsJsTs) == 0); // royal flush have same rank
+        assertTrue(_AdKdQdJdTd.compareToSameTypeCombination(_AsKsQsJsTs) == 0); // royal flush have same rank
     }
 
     @Test

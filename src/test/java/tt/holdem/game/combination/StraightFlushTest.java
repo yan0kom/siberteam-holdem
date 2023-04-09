@@ -24,9 +24,9 @@ class StraightFlushTest {
         var _JhTh9h8h7h = StraightFlush.create(new PokerHand("TH JH 9H 7H 8H").getCards()).get();
         var _9c8c7c6c5c = StraightFlush.create(new PokerHand("5C 6C 9C 7C 8C").getCards()).get();
 
-        assertTrue(_Th9h8h7h6h.compareTo(_Tc9c8c7c6c) == 0); // all cards have same rank
-        assertTrue(_JhTh9h8h7h.compareTo(_Tc9c8c7c6c) > 0); // Straight flush rank different
-        assertTrue(_9c8c7c6c5c.compareTo(_Tc9c8c7c6c) < 0); // Straight flush rank different
+        assertTrue(_Th9h8h7h6h.compareToSameTypeCombination(_Tc9c8c7c6c) == 0); // all cards have same rank
+        assertTrue(_JhTh9h8h7h.compareToSameTypeCombination(_Tc9c8c7c6c) > 0); // Straight flush rank different
+        assertTrue(_9c8c7c6c5c.compareToSameTypeCombination(_Tc9c8c7c6c) < 0); // Straight flush rank different
     }
 
     @Test

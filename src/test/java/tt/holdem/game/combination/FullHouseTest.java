@@ -24,9 +24,9 @@ class FullHouseTest {
         var _ThTs7h7d7c = FullHouse.create(new PokerHand("TH 7C 7D TS 7H").getCards()).get();
         var _QhQs7h7d7s = FullHouse.create(new PokerHand("QH QC 7D 7S 7H").getCards()).get();
 
-        assertTrue(_TdTs9d9c9s.compareTo(_ThTs9h9d9c) == 0); // all cards have same rank
-        assertTrue(_ThTs9h9d9c.compareTo(_ThTs7h7d7c) > 0); // triple rank different
-        assertTrue(_ThTs7h7d7c.compareTo(_QhQs7h7d7s) < 0); // pair rank different
+        assertTrue(_TdTs9d9c9s.compareToSameTypeCombination(_ThTs9h9d9c) == 0); // all cards have same rank
+        assertTrue(_ThTs9h9d9c.compareToSameTypeCombination(_ThTs7h7d7c) > 0); // triple rank different
+        assertTrue(_ThTs7h7d7c.compareToSameTypeCombination(_QhQs7h7d7s) < 0); // pair rank different
     }
 
     @Test

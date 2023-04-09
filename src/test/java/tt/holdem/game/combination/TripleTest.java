@@ -24,10 +24,10 @@ class TripleTest {
         var _KdThTcTs9c = Triple.create(new PokerHand("KD TC TS 9C TH").getCards()).get();
         var _KdThTcTsQc = Triple.create(new PokerHand("KD TC TS QC TH").getCards()).get();
 
-        assertTrue(_AdThTdTs5c.compareTo(_AdThTcTs5c) == 0); // all cards have same rank
-        assertTrue(_AdThTcTs5c.compareTo(_Ad3h3c3s5h) > 0); // triple rank different
-        assertTrue(_KdThTcTs9c.compareTo(_AdThTcTs5c) < 0); // first kicker different
-        assertTrue(_KdThTcTsQc.compareTo(_KdThTcTs9c) > 0); // second kicker different
+        assertTrue(_AdThTdTs5c.compareToSameTypeCombination(_AdThTcTs5c) == 0); // all cards have same rank
+        assertTrue(_AdThTcTs5c.compareToSameTypeCombination(_Ad3h3c3s5h) > 0); // triple rank different
+        assertTrue(_KdThTcTs9c.compareToSameTypeCombination(_AdThTcTs5c) < 0); // first kicker different
+        assertTrue(_KdThTcTsQc.compareToSameTypeCombination(_KdThTcTs9c) > 0); // second kicker different
     }
 
     @Test

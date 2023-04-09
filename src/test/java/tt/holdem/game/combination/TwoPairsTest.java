@@ -24,10 +24,10 @@ class TwoPairsTest {
         var _JsJc8s8h5c = TwoPairs.create(new PokerHand("JS JC 8S 5C 8H").getCards()).get();
         var _JsJc8s8hKc = TwoPairs.create(new PokerHand("JS JC 8S KC 8H").getCards()).get();
 
-        assertTrue(_AdAhTsTh5c.compareTo(_AsAcTsTh5c) == 0); // all cards have same rank
-        assertTrue(_AdAhTsTh5c.compareTo(_JsJcTsTh5c) > 0); // high pairs different
-        assertTrue(_JsJc8s8h5c.compareTo(_JsJcTsTh5c) < 0); // low pairs different
-        assertTrue(_JsJc8s8hKc.compareTo(_JsJc8s8h5c) > 0); // kicker different
+        assertTrue(_AdAhTsTh5c.compareToSameTypeCombination(_AsAcTsTh5c) == 0); // all cards have same rank
+        assertTrue(_AdAhTsTh5c.compareToSameTypeCombination(_JsJcTsTh5c) > 0); // high pairs different
+        assertTrue(_JsJc8s8h5c.compareToSameTypeCombination(_JsJcTsTh5c) < 0); // low pairs different
+        assertTrue(_JsJc8s8hKc.compareToSameTypeCombination(_JsJc8s8h5c) > 0); // kicker different
     }
 
     @Test

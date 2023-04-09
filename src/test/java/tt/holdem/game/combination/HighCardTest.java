@@ -26,12 +26,12 @@ class HighCardTest {
         var _KdJs7h3c2d = HighCard.create(new PokerHand("2D 7H KD JS 3C").getCards()).get();
         var _KdJs7h6c3d = HighCard.create(new PokerHand("3D 7H KD JS 6C").getCards()).get();
 
-        assertTrue(_KdJs7h6c5d.compareTo(_KhJs7h6c5s) == 0); // all cards have same rank
-        assertTrue(_AdJs9h7c5s.compareTo(_KdJs7h6c5d) > 0); // first card different
-        assertTrue(_KdTs7d6c5s.compareTo(_KdJs7h6c5d) < 0); // second card different
-        assertTrue(_KdJs7h6c5d.compareTo(_KdJs6c5d3h) > 0); // third card different
-        assertTrue(_KdJs7h3c2d.compareTo(_KdJs7h6c5d) < 0); // fourth card different
-        assertTrue(_KdJs7h6c5d.compareTo(_KdJs7h6c3d) > 0); // fifth card different
+        assertTrue(_KdJs7h6c5d.compareToSameTypeCombination(_KhJs7h6c5s) == 0); // all cards have same rank
+        assertTrue(_AdJs9h7c5s.compareToSameTypeCombination(_KdJs7h6c5d) > 0); // first card different
+        assertTrue(_KdTs7d6c5s.compareToSameTypeCombination(_KdJs7h6c5d) < 0); // second card different
+        assertTrue(_KdJs7h6c5d.compareToSameTypeCombination(_KdJs6c5d3h) > 0); // third card different
+        assertTrue(_KdJs7h3c2d.compareToSameTypeCombination(_KdJs7h6c5d) < 0); // fourth card different
+        assertTrue(_KdJs7h6c5d.compareToSameTypeCombination(_KdJs7h6c3d) > 0); // fifth card different
     }
 
     @Test
