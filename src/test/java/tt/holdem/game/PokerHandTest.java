@@ -1,4 +1,4 @@
-package tt.holdem.test.game;
+package tt.holdem.game.game;
 
 import org.junit.jupiter.api.Test;
 import tt.holdem.game.PokerHand;
