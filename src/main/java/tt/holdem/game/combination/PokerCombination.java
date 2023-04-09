@@ -21,6 +21,10 @@ public abstract class PokerCombination implements Comparable<PokerCombination> {
         return valueCompareResult;
     }
 
+    public int getCombinationValue() {
+        return combinationValue;
+    }
+
     protected abstract int compareToSameTypeCombination(PokerCombination other);
 
     protected static void assertCards(Card[] cards) {
