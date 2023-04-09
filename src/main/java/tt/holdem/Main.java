@@ -2,14 +2,17 @@ package tt.holdem;
 
 import tt.holdem.game.PokerHand;
 
+import java.util.Collections;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Holdem");
+        System.out.println("Hold 'em");
+        System.out.println();
 
-        var hand1 = new PokerHand("5S JH KD JS TC");
-        System.out.println("" + hand1 + " " + hand1.getCombination());
-
-        var hand2 = new PokerHand("5S JH KD 3S TC");
-        System.out.println("" + hand2 + " " + hand2.getCombination());
+        var list = Stream.generate(PokerHand::new).limit(100).collect(Collectors.toList());
+        Collections.sort(list);
+        list.stream().forEach(hand -> System.out.println("" + hand + " " + hand.getCombination()));
     }
 }
