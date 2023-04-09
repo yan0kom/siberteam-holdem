@@ -59,10 +59,6 @@ class FullHouse extends PokerCombination {
 
     @Override
     public String toString() {
-        var sb = new StringBuilder("Full house of triple ");
-        sb.append(tripleRank);
-        sb.append(" and pair ");
-        sb.append(pairRank);
-        return sb.toString();
+        return String.format("Full house of triple %s and pair %s", tripleRank, pairRank);
     }
 }

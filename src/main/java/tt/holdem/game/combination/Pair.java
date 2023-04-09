@@ -63,12 +63,11 @@ class Pair extends PokerCombination {
     public String toString() {
         var sb = new StringBuilder("Pair of ");
         sb.append(pairRank);
-        sb.append(", kickers ");
-        sb.append(kickersRank[0]);
-        sb.append(" ");
-        sb.append(kickersRank[1]);
-        sb.append(" ");
-        sb.append(kickersRank[2]);
+        sb.append(", kickers");
+        Arrays.stream(kickersRank).forEach((rank) -> {
+            sb.append(" ");
+            sb.append(rank);
+        });
         return sb.toString();
     }
 }

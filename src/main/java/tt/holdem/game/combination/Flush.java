@@ -58,9 +58,9 @@ class Flush extends PokerCombination {
         var sb = new StringBuilder("Flush of ");
         sb.append(suit.toString());
         sb.append(",");
-        Arrays.stream(cardsRank).forEach((card) -> {
+        Arrays.stream(cardsRank).forEach((rank) -> {
             sb.append(" ");
-            sb.append(card);
+            sb.append(rank);
         });
         return sb.toString();
     }

@@ -66,12 +66,6 @@ class Triple extends PokerCombination {
 
     @Override
     public String toString() {
-        var sb = new StringBuilder("Triple of ");
-        sb.append(tripleRank);
-        sb.append(", kickers ");
-        sb.append(kickersRank[0]);
-        sb.append(" ");
-        sb.append(kickersRank[1]);
-        return sb.toString();
+        return String.format("Triple of %s, kickers %s %s", tripleRank, kickersRank[0], kickersRank[1]);
     }
 }

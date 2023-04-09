@@ -53,9 +53,9 @@ class HighCard extends PokerCombination {
     @Override
     public String toString() {
         var sb = new StringBuilder("High card");
-        Arrays.stream(cardsRank).forEach((card) -> {
+        Arrays.stream(cardsRank).forEach((rank) -> {
             sb.append(" ");
-            sb.append(card);
+            sb.append(rank);
         });
         return sb.toString();
     }

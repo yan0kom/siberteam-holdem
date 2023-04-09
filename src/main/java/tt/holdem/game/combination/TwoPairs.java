@@ -64,12 +64,6 @@ class TwoPairs extends PokerCombination {
 
     @Override
     public String toString() {
-        var sb = new StringBuilder("Two pairs of ");
-        sb.append(highPairRank);
-        sb.append(" and ");
-        sb.append(lowPairRank);
-        sb.append(", kicker ");
-        sb.append(kickerRank);
-        return sb.toString();
+        return String.format("Two pairs of %s and %s, kicker %s", highPairRank, lowPairRank, kickerRank);
     }
 }
