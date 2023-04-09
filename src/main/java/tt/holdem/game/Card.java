@@ -21,7 +21,7 @@ public class Card implements Comparable<Card> {
 
     @Override
     public int compareTo(Card other) {
-        return Comparator.<Card, CardRank> comparing(Card::getRank)
+        return Comparator.comparing(Card::getRank)
                 .thenComparing(Card::getSuit)
                 .compare(this, other);
     }

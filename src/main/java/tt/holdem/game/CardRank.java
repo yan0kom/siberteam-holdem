@@ -24,8 +24,8 @@ public enum CardRank {
         this.symbol = symbol;
     }
 
-    private static CardRank[] valuesSortedBySymbol;
-    private static Character[] sortedSymbols;
+    private static final CardRank[] valuesSortedBySymbol;
+    private static final Character[] sortedSymbols;
     static {
         valuesSortedBySymbol = values();
         Arrays.sort(valuesSortedBySymbol, Comparator.comparing((other) -> other.symbol));
