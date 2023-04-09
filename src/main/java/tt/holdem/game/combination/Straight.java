@@ -7,13 +7,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Optional;
 
-public class Straight extends PokerCombination {
-    private CardRank rank;
-
-    private Straight() {
-        super(5);
-    }
-
+class Straight extends PokerCombination {
+    private static final Integer STRAIGHT_VALUE = 5;
     public static Optional<PokerCombination> create(Card[] cards) {
         assertCards(cards);
         if (Arrays.stream(cards).map(Card::getRank).distinct().count() != 5L) {
@@ -27,6 +22,15 @@ public class Straight extends PokerCombination {
                 .toArray(CardRank[]::new);
 
         return Optional.of(straight);
+    }
+    static {
+        PokerCombinationRegistry.registerCombinationFactoryMethod(STRAIGHT_VALUE, Straight::create);
+    }
+
+    private CardRank rank;
+
+    private Straight() {
+        super(STRAIGHT_VALUE);
     }
 
     protected int compareToSameTypeCombination(Straight other) {

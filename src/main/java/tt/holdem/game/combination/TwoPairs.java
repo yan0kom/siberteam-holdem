@@ -9,15 +9,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class TwoPairs extends PokerCombination {
-    private CardRank highPairRank;
-    private CardRank lowPairRank;
-    private CardRank kickerRank;
-
-    private TwoPairs() {
-        super(3);
-    }
-
+class TwoPairs extends PokerCombination {
+    private static final Integer TWO_PAIRS_VALUE = 3;
     public static Optional<PokerCombination> create(Card[] cards) {
         assertCards(cards);
         if (Arrays.stream(cards).map(Card::getRank).distinct().count() != 3L) {
@@ -44,6 +37,17 @@ public class TwoPairs extends PokerCombination {
                 .orElseThrow(() -> new UnknownError(Arrays.toString(cards)));
 
         return Optional.of(twoPairs);
+    }
+    static {
+        PokerCombinationRegistry.registerCombinationFactoryMethod(TWO_PAIRS_VALUE, TwoPairs::create);
+    }
+
+    private CardRank highPairRank;
+    private CardRank lowPairRank;
+    private CardRank kickerRank;
+
+    private TwoPairs() {
+        super(TWO_PAIRS_VALUE);
     }
 
     protected int compareToSameTypeCombination(TwoPairs other) {

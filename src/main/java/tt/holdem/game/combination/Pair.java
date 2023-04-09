@@ -8,14 +8,8 @@ import java.util.Comparator;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class Pair extends PokerCombination {
-    private CardRank pairRank;
-    private CardRank[] kickersRank;
-
-    private Pair() {
-        super(2);
-    }
-
+class Pair extends PokerCombination {
+    private static final Integer PAIR_VALUE = 2;
     public static Optional<PokerCombination> create(Card[] cards) {
         assertCards(cards);
         if (Arrays.stream(cards).map(Card::getRank).distinct().count() != 4L) {
@@ -40,6 +34,16 @@ public class Pair extends PokerCombination {
         }
 
         return Optional.of(pair);
+    }
+    static {
+        PokerCombinationRegistry.registerCombinationFactoryMethod(PAIR_VALUE, Pair::create);
+    }
+
+    private CardRank pairRank;
+    private CardRank[] kickersRank;
+
+    private Pair() {
+        super(PAIR_VALUE);
     }
 
     protected int compareToSameTypeCombination(Pair other) {

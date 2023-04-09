@@ -9,14 +9,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class Triple extends PokerCombination {
-    private CardRank tripleRank;
-    private CardRank[] kickersRank;
-
-    private Triple() {
-        super(4);
-    }
-
+class Triple extends PokerCombination {
+    private static final Integer TRIPLE_VALUE = 4;
     public static Optional<PokerCombination> create(Card[] cards) {
         assertCards(cards);
         if (Arrays.stream(cards).map(Card::getRank).distinct().count() != 3L) {
@@ -46,6 +40,16 @@ public class Triple extends PokerCombination {
         }
 
         return Optional.of(triple);
+    }
+    static {
+        PokerCombinationRegistry.registerCombinationFactoryMethod(TRIPLE_VALUE, Triple::create);
+    }
+
+    private CardRank tripleRank;
+    private CardRank[] kickersRank;
+
+    private Triple() {
+        super(TRIPLE_VALUE);
     }
 
     protected int compareToSameTypeCombination(Triple other) {

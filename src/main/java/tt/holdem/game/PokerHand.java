@@ -1,9 +1,7 @@
 package tt.holdem.game;
 
-import tt.holdem.game.combination.HighCard;
-import tt.holdem.game.combination.Pair;
 import tt.holdem.game.combination.PokerCombination;
-import tt.holdem.game.combination.TwoPairs;
+import tt.holdem.game.combination.PokerCombinationRegistry;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -27,10 +25,7 @@ public class PokerHand implements Comparable<PokerHand> {
 
     public PokerCombination getCombination() {
         if (combination == null) {
-            combination = TwoPairs.create(cards).orElseGet(
-                    () -> Pair.create(cards).orElseGet(
-                    () -> HighCard.create(cards)
-                            .orElseThrow(UnknownError::new)));
+            combination = PokerCombinationRegistry.create(cards);
         }
         return combination;
     }
