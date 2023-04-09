@@ -11,7 +11,7 @@ import java.util.*;
 public class PokerCombinationRegistry {
     @FunctionalInterface
     interface CombinationFactoryMethod {
-        Optional<PokerCombination> create(Card[] cards);
+        Optional<PokerCombination> create(List<Card> cards);
     }
 
     private static class RegistryEntry {
@@ -45,7 +45,7 @@ public class PokerCombinationRegistry {
      * @param cards Cards of poker hand
      * @return PokerCombination implementation
      */
-    public static PokerCombination create(Card[] cards) {
+    public static PokerCombination create(List<Card> cards) {
         for (var entry : factoryMethods) {
             var pokerCombination = entry.combinationFactoryMethod.create(cards);
             if (pokerCombination.isPresent()) {

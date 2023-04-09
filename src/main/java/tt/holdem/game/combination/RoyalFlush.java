@@ -4,14 +4,14 @@ import tt.holdem.game.Card;
 import tt.holdem.game.CardRank;
 import tt.holdem.game.CardSuit;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 class RoyalFlush extends PokerCombination {
     public static final Integer ROYAL_FLUSH_VALUE = 10;
-    public static Optional<PokerCombination> create(Card[] cards) {
+    public static Optional<PokerCombination> create(List<Card> cards) {
         assertCards(cards);
-        if (Arrays.stream(cards).map(Card::getSuit).distinct().count() != 1L) {
+        if (cards.stream().map(Card::getSuit).distinct().count() != 1L) {
             return Optional.empty();
         }
 
@@ -37,7 +37,7 @@ class RoyalFlush extends PokerCombination {
         super(ROYAL_FLUSH_VALUE);
     }
 
-    protected int compareToSameTypeCombination(RoyalFlush other) {
+    protected int compareToSameTypeCombination(RoyalFlush ignoredOther) {
         return 0;
     }
 

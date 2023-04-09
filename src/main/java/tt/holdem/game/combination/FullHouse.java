@@ -3,21 +3,18 @@ package tt.holdem.game.combination;
 import tt.holdem.game.Card;
 import tt.holdem.game.CardRank;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 class FullHouse extends PokerCombination {
     public static final Integer FULL_HOUSE_VALUE = 7;
-    public static Optional<PokerCombination> create(Card[] cards) {
+    public static Optional<PokerCombination> create(List<Card> cards) {
         assertCards(cards);
-        if (Arrays.stream(cards).map(Card::getRank).distinct().count() != 2L) {
+        if (cards.stream().map(Card::getRank).distinct().count() != 2L) {
             return Optional.empty();
         }
 
-        var rankMap = Arrays.stream(cards)
+        var rankMap = cards.stream()
                 .collect(Collectors.groupingBy(Card::getRank, Collectors.counting()));
         var tripleRankOpt = rankMap.entrySet().stream()
                 .filter(entry -> entry.getValue() == 3)
@@ -31,7 +28,7 @@ class FullHouse extends PokerCombination {
         fullHouse.pairRank = rankMap.entrySet().stream()
                 .filter(entry -> entry.getValue() == 2)
                 .map(Map.Entry::getKey)
-                .findFirst().orElseThrow(() -> new UnknownError(Arrays.toString(cards)));
+                .findFirst().orElseThrow(() -> new UnknownError(cards.toString()));
 
         return Optional.of(fullHouse);
     }

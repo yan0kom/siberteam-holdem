@@ -3,22 +3,19 @@ package tt.holdem.game.combination;
 import tt.holdem.game.Card;
 import tt.holdem.game.CardRank;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 class TwoPairs extends PokerCombination {
     public static final Integer TWO_PAIRS_VALUE = 3;
-    public static Optional<PokerCombination> create(Card[] cards) {
+    public static Optional<PokerCombination> create(List<Card> cards) {
         assertCards(cards);
-        if (Arrays.stream(cards).map(Card::getRank).distinct().count() != 3L) {
+        if (cards.stream().map(Card::getRank).distinct().count() != 3L) {
             return Optional.empty();
         }
 
         var twoPairs = new TwoPairs();
-        var pairsRank = Arrays.stream(cards)
+        var pairsRank = cards.stream()
                 .collect(Collectors.groupingBy(Card::getRank, Collectors.counting()))
                 .entrySet().stream()
                 .filter(entry -> entry.getValue() == 2)
@@ -30,11 +27,11 @@ class TwoPairs extends PokerCombination {
         }
         twoPairs.highPairRank = pairsRank[0];
         twoPairs.lowPairRank = pairsRank[1];
-        twoPairs.kickerRank = Arrays.stream(cards)
+        twoPairs.kickerRank = cards.stream()
                 .map(Card::getRank)
                 .filter(rank -> twoPairs.highPairRank != rank && twoPairs.lowPairRank != rank)
                 .findFirst()
-                .orElseThrow(() -> new UnknownError(Arrays.toString(cards)));
+                .orElseThrow(() -> new UnknownError(cards.toString()));
 
         return Optional.of(twoPairs);
     }

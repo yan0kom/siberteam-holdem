@@ -5,18 +5,19 @@ import tt.holdem.game.CardRank;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 
 class Straight extends PokerCombination {
     public static final Integer STRAIGHT_VALUE = 5;
-    public static Optional<PokerCombination> create(Card[] cards) {
+    public static Optional<PokerCombination> create(List<Card> cards) {
         assertCards(cards);
-        if (Arrays.stream(cards).map(Card::getRank).distinct().count() != 5L) {
+        if (cards.stream().map(Card::getRank).distinct().count() != 5L) {
             return Optional.empty();
         }
 
         var straight = new Straight();
-        var cardRanks = Arrays.stream(cards)
+        var cardRanks = cards.stream()
                 .map(Card::getRank)
                 .sorted(Comparator.reverseOrder())
                 .toArray(CardRank[]::new);

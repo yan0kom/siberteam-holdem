@@ -3,22 +3,19 @@ package tt.holdem.game.combination;
 import tt.holdem.game.Card;
 import tt.holdem.game.CardRank;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 class Quads extends PokerCombination {
     public static final Integer QUADS_VALUE = 8;
-    public static Optional<PokerCombination> create(Card[] cards) {
+    public static Optional<PokerCombination> create(List<Card> cards) {
         assertCards(cards);
-        if (Arrays.stream(cards).map(Card::getRank).distinct().count() != 2L) {
+        if (cards.stream().map(Card::getRank).distinct().count() != 2L) {
             return Optional.empty();
         }
 
         // full house or quads
-        var quadsRankOpt = Arrays.stream(cards)
+        var quadsRankOpt = cards.stream()
                 .collect(Collectors.groupingBy(Card::getRank, Collectors.counting()))
                 .entrySet().stream()
                 .filter(entry -> entry.getValue() == 4)
@@ -30,7 +27,7 @@ class Quads extends PokerCombination {
 
         var quads = new Quads();
         quads.quadsRank = quadsRankOpt.get();
-        var kickersRank = Arrays.stream(cards)
+        var kickersRank = cards.stream()
                 .map(Card::getRank)
                 .filter(rank -> quads.quadsRank != rank)
                 .toArray(CardRank[]::new);

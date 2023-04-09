@@ -6,19 +6,20 @@ import tt.holdem.game.CardSuit;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 
 class Flush extends PokerCombination {
     public static final Integer FLUSH_VALUE = 6;
-    public static Optional<PokerCombination> create(Card[] cards) {
+    public static Optional<PokerCombination> create(List<Card> cards) {
         assertCards(cards);
-        if (Arrays.stream(cards).map(Card::getSuit).distinct().count() != 1L) {
+        if (cards.stream().map(Card::getSuit).distinct().count() != 1L) {
             return Optional.empty();
         }
 
         var flush = new Flush();
-        flush.suit = cards[0].getSuit();
-        flush.cardsRank = Arrays.stream(cards)
+        flush.suit = cards.get(0).getSuit();
+        flush.cardsRank = cards.stream()
                 .map(Card::getRank)
                 .sorted(Comparator.reverseOrder())
                 .toArray(CardRank[]::new);

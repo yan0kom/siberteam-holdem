@@ -3,22 +3,19 @@ package tt.holdem.game.combination;
 import tt.holdem.game.Card;
 import tt.holdem.game.CardRank;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 class Triple extends PokerCombination {
     public static final Integer TRIPLE_VALUE = 4;
-    public static Optional<PokerCombination> create(Card[] cards) {
+    public static Optional<PokerCombination> create(List<Card> cards) {
         assertCards(cards);
-        if (Arrays.stream(cards).map(Card::getRank).distinct().count() != 3L) {
+        if (cards.stream().map(Card::getRank).distinct().count() != 3L) {
             return Optional.empty();
         }
 
         // two pairs or triple
-        var tripleRankOpt = Arrays.stream(cards)
+        var tripleRankOpt = cards.stream()
                 .collect(Collectors.groupingBy(Card::getRank, Collectors.counting()))
                 .entrySet().stream()
                 .filter(entry -> entry.getValue() == 3)
@@ -30,9 +27,9 @@ class Triple extends PokerCombination {
 
         var triple = new Triple();
         triple.tripleRank = tripleRankOpt.get();
-        triple.kickersRank = Arrays.stream(cards)
-                .filter(card -> triple.tripleRank != card.getRank())
+        triple.kickersRank = cards.stream()
                 .map(Card::getRank)
+                .filter(rank -> triple.tripleRank != rank)
                 .sorted(Comparator.reverseOrder())
                 .toArray(CardRank[]::new);
         if (triple.kickersRank.length != 2) {

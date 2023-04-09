@@ -5,28 +5,29 @@ import tt.holdem.game.CardRank;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 class Pair extends PokerCombination {
     public static final Integer PAIR_VALUE = 2;
-    public static Optional<PokerCombination> create(Card[] cards) {
+    public static Optional<PokerCombination> create(List<Card> cards) {
         assertCards(cards);
-        if (Arrays.stream(cards).map(Card::getRank).distinct().count() != 4L) {
+        if (cards.stream().map(Card::getRank).distinct().count() != 4L) {
             return Optional.empty();
         }
 
         var pair = new Pair();
-        pair.pairRank = Arrays.stream(cards)
+        pair.pairRank = cards.stream()
                 .collect(Collectors.groupingBy(Card::getRank, Collectors.counting()))
                 .entrySet().stream()
                 .filter(entry -> entry.getValue() == 2)
                 .findFirst()
                 .orElseThrow()
                 .getKey();
-        pair.kickersRank = Arrays.stream(cards)
-                .filter(card -> pair.pairRank != card.getRank())
+        pair.kickersRank = cards.stream()
                 .map(Card::getRank)
+                .filter(rank -> pair.pairRank != rank)
                 .sorted(Comparator.reverseOrder())
                 .toArray(CardRank[]::new);
         if (pair.kickersRank.length != 3) {

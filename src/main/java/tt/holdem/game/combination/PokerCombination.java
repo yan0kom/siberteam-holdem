@@ -2,7 +2,7 @@ package tt.holdem.game.combination;
 
 import tt.holdem.game.Card;
 
-import java.util.Arrays;
+import java.util.List;
 
 public abstract class PokerCombination implements Comparable<PokerCombination> {
     protected final int combinationValue;
@@ -14,7 +14,7 @@ public abstract class PokerCombination implements Comparable<PokerCombination> {
     /** Reverse comparing (descendant order) */
     @Override
     public int compareTo(PokerCombination other) {
-        Integer valueCompareResult = Integer.compare(this.combinationValue, other.combinationValue);
+        int valueCompareResult = Integer.compare(this.combinationValue, other.combinationValue);
         // if same combination
         if (valueCompareResult == 0) {
             return compareToSameTypeCombination(other) * -1;
@@ -28,9 +28,9 @@ public abstract class PokerCombination implements Comparable<PokerCombination> {
 
     protected abstract int compareToSameTypeCombination(PokerCombination other);
 
-    protected static void assertCards(Card[] cards) {
-        if (cards.length != 5) {
-            throw new IllegalArgumentException(Arrays.toString(cards));
+    protected static void assertCards(List<Card> cards) {
+        if (cards.size() != 5) {
+            throw new IllegalArgumentException(cards.toString());
         }
     }
 }

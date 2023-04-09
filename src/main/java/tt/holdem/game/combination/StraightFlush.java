@@ -4,15 +4,15 @@ import tt.holdem.game.Card;
 import tt.holdem.game.CardRank;
 import tt.holdem.game.CardSuit;
 
-import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 
 class StraightFlush extends PokerCombination {
     public static final Integer STRAIGHT_FLUSH_VALUE = 9;
-    public static Optional<PokerCombination> create(Card[] cards) {
+    public static Optional<PokerCombination> create(List<Card> cards) {
         assertCards(cards);
-        if (Arrays.stream(cards).map(Card::getSuit).distinct().count() != 1L) {
+        if (cards.stream().map(Card::getSuit).distinct().count() != 1L) {
             return Optional.empty();
         }
 
@@ -24,7 +24,7 @@ class StraightFlush extends PokerCombination {
         var straight = (Straight) straightOpt.get();
         var straightFlush = new StraightFlush();
         straightFlush.rank = straight.getRank();
-        straightFlush.suit = cards[0].getSuit();
+        straightFlush.suit = cards.get(0).getSuit();
 
         return Optional.of(straightFlush);
     }
