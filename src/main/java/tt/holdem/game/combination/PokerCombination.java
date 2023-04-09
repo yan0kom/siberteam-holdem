@@ -11,14 +11,15 @@ public abstract class PokerCombination implements Comparable<PokerCombination> {
         this.combinationValue = combinationValue;
     }
 
+    /** Reverse comparing (descendant order) */
     @Override
     public int compareTo(PokerCombination other) {
         Integer valueCompareResult = Integer.compare(this.combinationValue, other.combinationValue);
         // if same combination
         if (valueCompareResult == 0) {
-            return compareToSameTypeCombination(other);
+            return compareToSameTypeCombination(other) * -1;
         }
-        return valueCompareResult;
+        return valueCompareResult * -1;
     }
 
     public int getCombinationValue() {
