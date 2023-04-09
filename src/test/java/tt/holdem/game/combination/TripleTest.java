@@ -1,10 +1,10 @@
-package tt.holdem.game.game.combination;
+package tt.holdem.game.combination;
 
 import org.junit.jupiter.api.Test;
 import tt.holdem.game.PokerHand;
-import tt.holdem.game.combination.Triple;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TripleTest {
     @Test

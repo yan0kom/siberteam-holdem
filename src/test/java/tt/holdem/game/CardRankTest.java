@@ -1,4 +1,4 @@
-package tt.holdem.game.game;
+package tt.holdem.game;
 
 import org.junit.jupiter.api.Test;
 import tt.holdem.game.CardRank;
