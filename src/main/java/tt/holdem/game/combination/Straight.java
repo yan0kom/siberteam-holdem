@@ -16,10 +16,19 @@ class Straight extends PokerCombination {
         }
 
         var straight = new Straight();
-        Arrays.stream(cards)
+        var cardRanks = Arrays.stream(cards)
                 .map(Card::getRank)
                 .sorted(Comparator.reverseOrder())
                 .toArray(CardRank[]::new);
+        if (cardRanks.length != 5) {
+            throw new UnknownError(Arrays.toString(cardRanks));
+        }
+        for (int i = 0; i < 4; ++i) {
+            if (cardRanks[i].ordinal() - cardRanks[i + 1].ordinal() !=  1) { // not straight
+                return Optional.empty();
+            }
+        }
+        straight.rank = cardRanks[0];
 
         return Optional.of(straight);
     }
